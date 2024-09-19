@@ -15,8 +15,8 @@ def main():
     
     fix_seed(args.random_seed)
     
-    print("OPENAI_API_KEY:")
-    print(os.getenv("OPENAI_API_KEY")[0:5] + '**********')
+    print("OPENROUTER_API_KEY:")
+    print(os.getenv("OPENROUTER_API_KEY")[0:5] + '**********')
     
     # Initialize decoder class (load model and tokenizer) ...
     decoder = Decoder()
@@ -102,7 +102,13 @@ def parse_arguments():
         "--demo_path", type=str, default="demos/multiarith", help="pre-generated demos used for experiment"
     )
     parser.add_argument(
-        "--model", type=str, default="gpt3-xl", choices=["gpt3", "gpt3-medium", "gpt3-large", "gpt3-xl", "code-davinci-002", "gpt-3.5-turbo-0301", "gpt-3.5-turbo","gpt-3.5-turbo-16k-0613"], help="model used for decoding. Note that 'gpt3' are the smallest models."
+        "--model", type=str, default="gpt-3.5-turbo",
+        choices=[
+            "gpt3", "gpt3-medium", "gpt3-large", "gpt3-xl",
+            "code-davinci-002", "gpt-3.5-turbo-0301", "gpt-3.5-turbo",
+            "gpt-3.5-turbo-16k-0613", "gpt-4", "gpt-4-32k"
+        ],
+        help="model used for decoding"
     )
     parser.add_argument(
         "--output_dir", type=str, default="CAT_demos/multiarith", help="output directory"

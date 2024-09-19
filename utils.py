@@ -92,46 +92,23 @@ def decoder_for_gpt3(args, input, max_length):
         engine = args.model
     while True:
         try:
-            client = OpenAI()
-            if ("few_shot" in args.method or "auto" in args.method)  and engine == "code-davinci-002":
-                response = openai.Completion.create(
-                engine=engine,
-                prompt=input,
+            client = OpenAI(
+                base_url="https://openrouter.ai/api/v1",
+                api_key=os.environ.get("OPENROUTER_API_KEY"),
+            )
+            response = client.chat.completions.create(
+                model=engine,
+                messages=[
+                    {"role": "system", "content": "You are a helpful assistant that solves math problems."},
+                    {"role": "user", "content": input},
+                ],
                 max_tokens=max_length,
                 temperature=args.temperature,
                 top_p=1,
                 frequency_penalty=0,
                 presence_penalty=0,
-                stop=["\n"]
-                )
-            elif "turbo" in engine or "gpt4" in engine or "gpt-4" in engine:
-                response = client.chat.completions.create(
-                    model=engine,
-                    temperature=args.temperature,
-                    max_tokens=max_length,
-                    top_p=1,
-                    frequency_penalty=0,
-                    presence_penalty=0,
-                    stop=None,
-                    messages=[
-                            {"role": "system", "content": "You are a helpful assistant that solves math problems."},
-                            {"role": "user", "content": input},
-                        ]
-                )
-                return ' ' + response.choices[0].message.content
-            else:
-                response = openai.Completion.create(
-                    engine=engine,
-                    prompt=input,
-                    max_tokens=max_length,
-                    temperature=args.temperature,
-                    top_p=1,
-                    frequency_penalty=0,
-                    presence_penalty=0,
-                    stop=None
-                )
-
-            return response.choices[0].text
+            )
+            return response.choices[0].message.content.strip()
         
         except KeyboardInterrupt:
             print('Interrupted')
@@ -140,8 +117,6 @@ def decoder_for_gpt3(args, input, max_length):
             except SystemExit:
                 os._exit(0)
         except Exception as e:
-            if type(e).__name__ == 'InvalidRequestError':
-                raise ValueError("Raise error to - rcd")
             print(e)
             time.sleep(2)
             continue
@@ -356,11 +331,11 @@ def answer_cleansing(args, pred, must_choice=False, silence=False):
             pred = [s for s in re.findall(r'-?\d+\.?\d*', pred)]
     elif args.dataset in ("strategyqa", "coin_flip"):
         pred = pred.lower()
-        pred = re.sub("\"|\'|\n|\.|\s|\:|\,"," ", pred)
+        pred = re.sub(r"\"|\'|\n|\.|\s|\:|\,", " ", pred)
         pred = pred.split(" ")
         pred = [i for i in pred if i in ("yes", "no")]
     elif args.dataset == "last_letters":
-        pred = re.sub("\"|\'|\n|\.|\s","", pred)
+        pred = re.sub(r"\"|\'|\n|\.|\s", "", pred)
         pred = [pred]
     else:
         raise ValueError("dataset is not properly defined ...")
@@ -483,11 +458,11 @@ def answer_cleansing_zero_shot(args, pred, must_choice=False):
             pred = [s for s in re.findall(r'-?\d+\.?\d*', pred)]
     elif args.dataset in ("strategyqa", "coin_flip"):
         pred = pred.lower()
-        pred = re.sub("\"|\'|\n|\.|\s|\:|\,", " ", pred)
+        pred = re.sub(r"\"|\'|\n|\.|\s|\:|\,", " ", pred)
         pred = pred.split(" ")
         pred = [i for i in pred if i in ("yes", "no")]
     elif args.dataset == "last_letters":
-        pred = re.sub("\"|\'|\n|\.|\s", "", pred)
+        pred = re.sub(r"\"|\'|\n|\.|\s", "", pred)
         pred = [pred]
     else:
         raise ValueError("dataset is not properly defined ...")

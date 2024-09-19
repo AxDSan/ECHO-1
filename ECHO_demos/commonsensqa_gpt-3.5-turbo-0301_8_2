@@ -1,0 +1,46 @@
+{
+    "demo": [
+        {
+            "question": "Q: Where would you find a ticket booth and see a concert? Answer Choices: (A) clerk (B) indoors (C) movie theater (D) venue (E) auditorium\nA:",
+            "rationale": "Let's think step by step. First, we need to understand what is being described in the sentence. The sentence mentions a ticket booth and a concert, which suggests that the sentence is describing a place where tickets are sold for a musical performance. Next, we need to identify where this place is located based on the answer choices. Answer choices (A) clerk and (C) movie theater do not necessarily relate to a musical performance. Answer choice (B) indoors is too general and does not provide enough information. Answer choice (E) auditorium is a possibility, but it does not necessarily have a ticket booth. The best answer choice is (D) venue, as it specifically refers to a place where events, such as concerts, are held and where tickets are sold. Therefore, the correct answer is (D) venue.",
+            "pred_ans": "D",
+            "gold_ans": "D"
+        },
+        {
+            "question": "Q: If somebody is working at a reception desk, they are located at the front entrance of the what? Answer Choices: (A) motel (B) hostel (C) building (D) lobby (E) office park\nA:",
+            "rationale": "Let's think step by step. First, we need to understand what a reception desk is. A reception desk is a desk or counter where someone greets and assists visitors or customers. Next, we need to identify where this desk is located based on the answer choices. Answer choices (A) motel and (B) hostel suggest specific types of lodging, but they do not necessarily have a front entrance with a reception desk. Answer choice (E) office park is also not a good fit, as it suggests a complex of office buildings rather than a specific entrance. The best answer choices are (C) building and (D) lobby, as they both suggest a location where there could be a front entrance with a reception desk. However, the more specific answer choice is (D) lobby, as it specifically refers to the area near the entrance of a building where visitors are received. Therefore, the correct answer is (D) lobby.",
+            "pred_ans": "D",
+            "gold_ans": "C"
+        },
+        {
+            "question": "Q: Boredom and hunger led to a wandering waste of time and a cart full of unhealthy snacks during her trip to where? Answer Choices: (A) new moon (B) play cards (C) read book (D) see art (E) grocery shop\nA:",
+            "rationale": "Let's think step by step. First, we need to understand the situation. The question mentions boredom and hunger leading to a wandering waste of time and a cart full of unhealthy snacks, which suggests that the person went to a place where they could buy snacks. Next, we need to identify where this place is located based on the answer choices. Answer choices (A) new moon, (B) play cards, (C) read book, and (D) see art are not related to buying snacks. The best answer choice is (E) grocery shop, as it is a place where someone could buy snacks and other food items. Therefore, the correct answer is (E) grocery shop.",
+            "pred_ans": "E",
+            "gold_ans": "E"
+        },
+        {
+            "question": "Q: If you spend a long time running after a ball how are you likely to feel? Answer Choices: (A) laughter (B) sweating (C) embarrassed (D) breathing heavily (E) tiredness\nA:",
+            "rationale": "Let's think step by step. First, we need to understand the situation. The question mentions spending a long time running after a ball, which suggests that the person is engaging in physical activity. Next, we need to consider how this physical activity is likely to make the person feel. Based on the answer choices, the best option is (E) tiredness. Running for a long time can be physically exhausting and can lead to feelings of fatigue. Answer choices (A) laughter, (C) embarrassed, and (D) breathing heavily are not necessarily outcomes of running after a ball. Answer choice (B) sweating is a possibility, but it is not specific enough and does not necessarily relate to the situation of running after a ball. Therefore, the correct answer is (E) tiredness.",
+            "pred_ans": "E",
+            "gold_ans": "E"
+        },
+        {
+            "question": "Q: There was many a bottle to choose from behind the cashier where? Answer Choices: (A) grocery store (B) diaper bag (C) gas station (D) liquor store (E) medicine cabinet\nA:",
+            "rationale": "Let's think step by step. First, we need to understand what is being described in the sentence. The sentence mentions many bottles to choose from behind the cashier, which suggests that the sentence is describing a place where bottles are sold. Next, we need to identify where this place is located based on the answer choices. Answer choices (B) diaper bag and (E) medicine cabinet are not locations where bottles are sold. Answer choice (A) grocery store and (C) gas station may sell some bottles, but they are not typically known for selling a wide variety of bottles. The best answer choice is (D) liquor store, as it is a place where many different types of bottles, such as alcohol and wine, are sold. Therefore, the correct answer is (D) liquor store.",
+            "pred_ans": "D",
+            "gold_ans": "D"
+        },
+        {
+            "question": "Q: Surprising an angry person could lead to what? Answer Choices: (A) humor (B) fight (C) jocose (D) laughter (E) accidents\nA:",
+            "rationale": "Let's think step by step. First, we need to understand the situation. The question mentions an angry person, which suggests that the person is experiencing negative emotions. Next, we need to consider what could happen if this person is surprised. Based on the answer choices, the best option is (B) fight. If someone is already angry and they are surprised, they may react aggressively and start a fight. Answer choices (A) humor, (C) jocose, and (D) laughter are not likely outcomes of surprising an angry person. Answer choice (E) accidents is a possibility, but it is not specific enough and does not necessarily relate to the situation of surprising an angry person. Therefore, the correct answer is (B) fight.",
+            "pred_ans": "B",
+            "gold_ans": "B"
+        },
+        {
+            "question": "Q: His house was a mess, he began doing housework to get what? Answer Choices: (A) boredom (B) nice home (C) michigan (D) feeling satisfied (E) house clean\nA:",
+            "rationale": "Let's think step by step. First, we need to understand the situation. The question mentions a messy house and doing housework, which suggests that the person is trying to clean their home. Next, we need to consider what the person is trying to achieve by doing housework. Based on the answer choices, the best option is (E) house clean. The person is likely doing housework to clean their home and make it more organized. Answer choices (A) boredom, (C) michigan, and (B) nice home are not relevant to the situation. Answer choice (D) feeling satisfied is a possibility, but it is not specific enough and does not necessarily relate to the situation of cleaning a messy house. Therefore, the correct answer is (E) house clean.",
+            "pred_ans": "E",
+            "gold_ans": "E"
+        }
+    ]
+}
