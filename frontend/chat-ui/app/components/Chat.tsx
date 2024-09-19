@@ -78,7 +78,7 @@ const Chat: React.FC = () => {
           } else if (data.full_response) {
             const assistantMessage: Message = { 
               role: "assistant", 
-              content: data.cleaned_response ? `Full response: ${data.full_response}\n\nCleaned response: ${data.cleaned_response}` : data.full_response
+              content: data.cleaned_response ? `${data.full_response}` : data.full_response
             };
             setMessages((prev) => [...prev, assistantMessage]);
           }

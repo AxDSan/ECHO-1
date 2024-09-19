@@ -16,7 +16,7 @@ export default function Index() {
     <div className="flex flex-col items-center justify-center min-h-screen bg-gray-100">
       <div className="mb-4">
         <ConsoleText 
-          words={['ECHO.']} 
+          words={['ECHO.', 'Self-Harmonizing CoT']} 
           id="animated-title" 
           colors={['tomato', 'rebeccapurple', 'lightblue']}
         />
