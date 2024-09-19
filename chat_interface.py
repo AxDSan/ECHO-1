@@ -52,11 +52,11 @@ def chat_with_model(messages, args):
         
         # Get the response
         response = decoder_for_gpt3(args_obj, input_text, args.get("max_length_cot", 4096))
-        print(f"Raw response: {response}")
+        # print(f"Raw response: {response}")
         
         # Clean the answer
         cleaned_response = answer_cleansing(args_obj, response)
-        print(f"Cleaned response: {cleaned_response}")
+        # print(f"Cleaned response: {cleaned_response}")
         
         # Return both the full response and the cleaned response
         return {
