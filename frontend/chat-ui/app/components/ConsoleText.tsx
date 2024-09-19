@@ -60,7 +60,7 @@ const ConsoleText: React.FC<ConsoleTextProps> = ({ words, id, colors = ['#fff'] 
 
   return (
     <div>
-      <span id={id} className="text-[3rem]" ref={targetRef}></span>
+      <span id={id} className="text-[3rem] font-extrabold" ref={targetRef}></span>
       <span ref={conRef} className={`console-underscore ${visible ? '' : 'hidden'} text-[3rem]`}>&#95;</span>
     </div>
   );
