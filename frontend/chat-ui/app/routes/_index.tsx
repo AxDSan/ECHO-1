@@ -14,9 +14,9 @@ export const meta: MetaFunction = () => {
 export default function Index() {
   return (
     <div className="flex flex-col items-center justify-center min-h-screen bg-gray-100">
-      <div className="mb-4">
+      <div className="w-full mb-8">
         <ConsoleText 
-          words={['ECHO.', 'Self-Harmonizing CoT']} 
+          words={['ECHO.', 'Self-Harmonized CoT']} 
           id="animated-title" 
           colors={['tomato', 'rebeccapurple', 'lightblue']}
         />

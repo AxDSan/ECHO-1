@@ -6,9 +6,9 @@ interface ConsoleTextProps {
   colors?: string[];
 }
 
-const ConsoleText: React.FC<ConsoleTextProps> = ({ words, id, colors = ['#fff'] }) => {
+const ConsoleText: React.FC<ConsoleTextProps> = ({ words, id, colors = ['#6D72C3'] }) => {
   const targetRef = useRef<HTMLSpanElement>(null);
-  const conRef = useRef<HTMLSpanElement>(null);
+  const underscoreRef = useRef<HTMLSpanElement>(null);
   const [visible, setVisible] = useState(true);
 
   useEffect(() => {
@@ -59,9 +59,15 @@ const ConsoleText: React.FC<ConsoleTextProps> = ({ words, id, colors = ['#fff'] 
   }, [words, colors]);
 
   return (
-    <div>
-      <span id={id} className="text-[3rem] font-extrabold" ref={targetRef}></span>
-      <span ref={conRef} className={`console-underscore ${visible ? '' : 'hidden'} text-[3rem]`}>&#95;</span>
+    <div className="console-container w-full">
+      <span id={id} ref={targetRef} className="block"></span>
+      <span 
+        ref={underscoreRef} 
+        className="console-underscore inline-block"
+        style={{ visibility: visible ? 'visible' : 'hidden' }}
+      >
+        &#95;
+      </span>
     </div>
   );
 };

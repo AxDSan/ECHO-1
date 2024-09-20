@@ -1,6 +1,13 @@
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect, useRef, Key } from "react";
+import ReactMarkdown from 'react-markdown';
+import rehypeRaw from 'rehype-raw';
+import rehypeSanitize from 'rehype-sanitize';
+import rehypeKatex from 'rehype-katex';
+import remarkMath from 'remark-math';
+import 'katex/dist/katex.min.css';
 
 interface Message {
+  id: Key | null | undefined;
   role: "user" | "assistant";
   content: string;
 }
@@ -11,6 +18,7 @@ const Chat: React.FC = () => {
   const [loading, setLoading] = useState(false);
   const [progressMessages, setProgressMessages] = useState<string[]>([]);
   const messagesEndRef = useRef<HTMLDivElement>(null);
+  const [messageId, setMessageId] = useState(0);
 
   const scrollToBottom = () => {
     messagesEndRef.current?.scrollIntoView({ behavior: "smooth" });
@@ -23,8 +31,9 @@ const Chat: React.FC = () => {
   const sendMessage = async () => {
     if (!input.trim()) return;
 
-    const userMessage: Message = { role: "user", content: input };
+    const userMessage: Message = { id: messageId, role: "user", content: input };
     setMessages((prev) => [...prev, userMessage]);
+    setMessageId((prevId) => prevId + 1);
     setInput("");
     setLoading(true);
     setProgressMessages([]);
@@ -128,27 +137,47 @@ const Chat: React.FC = () => {
     );
   };
 
+  const renderMessage = (msg: Message) => (
+    <div
+      key={msg.id}
+      className={`flex ${
+        msg.role === "user" ? "justify-end" : "justify-start"
+      } mb-4`}
+    >
+      <div
+        className={`max-w-[70%] px-4 py-2 rounded-lg ${
+          msg.role === "user"
+            ? "bg-blue-500 text-white"
+            : "bg-gray-200 text-gray-900"
+        }`}
+      >
+        <ReactMarkdown
+          remarkPlugins={[remarkMath]}
+          rehypePlugins={[rehypeRaw, rehypeSanitize, rehypeKatex]}
+          components={{
+            pre: ({ node, ...props }) => (
+              <pre className="bg-gray-800 text-white p-2 rounded-md overflow-x-auto">
+                <code {...props} />
+              </pre>
+            ),
+            code: ({ node, ...props }) => (
+              props.inline 
+                ? <code className="bg-gray-200 text-red-500 px-1 rounded" {...props} />
+                : <code {...props} />
+            ),
+            p: ({ children }) => <p className="mb-2">{children}</p>,
+          }}
+        >
+          {msg.content}
+        </ReactMarkdown>
+      </div>
+    </div>
+  );
+
   return (
     <div className="w-[800px] h-[600px] flex flex-col bg-white shadow-lg rounded-lg overflow-hidden">
       <div className="flex-1 overflow-y-auto p-4">
-        {messages.map((msg, index) => (
-          <div
-            key={index}
-            className={`flex ${
-              msg.role === "user" ? "justify-end" : "justify-start"
-            } mb-4`}
-          >
-            <div
-              className={`max-w-[70%] px-4 py-2 rounded-lg ${
-                msg.role === "user"
-                  ? "bg-blue-500 text-white"
-                  : "bg-gray-200 text-gray-900"
-              }`}
-            >
-              <pre className="whitespace-pre-wrap text-sm">{msg.content}</pre>
-            </div>
-          </div>
-        ))}
+        {messages.map(renderMessage)}
         {loading && (
           <>
             <ProgressMarquee messages={progressMessages} />
